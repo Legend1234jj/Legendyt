@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGENDEDITORYT64 | Armwrestling Legends</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Con//Xse//0:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --secondary: #212121;
+            --accent: #ff9800;
+            --dark: #121212;
+            --light: #f5f5f5;
+            --text: #e0e0e0;
+            --gold: #ffd700;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: -2px;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), #b71c1c);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: var(--transition);
+            margin: 20px 10px;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(211, 47, 47, 0.4);
+        }
+
+        .cta-button i {
+            margin-right: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--gold);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            font-size: 3rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin: 60px 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--primary);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .legends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .legend-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legend-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+
+        .legend-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .legend-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .legend-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .legend-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .legend-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+        }
+
+        .about-section {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 80px 0;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .footer {
+            background: var(--dark);
+            padding: 70px 20px 30px;
+            text-align: center;
+            border-top: 3px solid var(--primary);
+        }
+
+        .footer-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .logo {
+                font-size: 4rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .video-wrapper iframe {
+                height: 300px;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .video-wrapper iframe {
+                height: 200px;
+            }
+            
+            .about-section {
+                padding: 30px 20px;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="logo floating">LEGENDEDITORYT64</div>
+            <div class="tagline pulse">THE HOME OF ARM WRESTLING LEGENDS</div>
+            
+            <div>
+                <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="cta-button" target="_blank">
+                    <i class="fab fa-youtube"></i> SUBSCRIBE NOW
+                </a>
+                <a href="https://youtube.com/shorts/DQyuYKHPr0I?si=0CWaVvjpLMhScpOb" class="cta-button" target="_blank">
+                    <i class="fas fa-play"></i> WATCH LATEST
+                </a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="social-icon" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/gautam.64_/" class="social-icon" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://t.me/legendcreator64" class="social-icon" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">40k</div>
+                    <div class="stat-label">Views</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">65</div>
+                    <div class="stat-label">Subscribers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">36</div>
+                    <div class="stat-label">Videos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Video Section -->
+    <section class="section">
+        <h2 class="section-title">LATEST ARM WRESTLING ACTION</h2>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/DQyuYKHPr0I" title="Latest Arm Wrestling Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arm Wrestling Legends Section -->
+    <section class="section">
+        <h2 class="section-title">ARM WRESTLING LEGENDS</h2>
+        <div class="legends-grid">
+            <!-- Devon Larratt -->
+            <div class="legend-card">
+                <div class="badge">CANADA</div>
+                <img src="devo.jpg" alt="Devon Larratt" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">DEVON LARRATT</h3>
+                    <div class="legend-title">THE LEGEND</div>
+                    <p class="legend-desc">Canadian arm wrestling legend known for his technical prowess and endurance. Multiple-time world champion with an unmatched ability to read opponents.</p>
+                </div>
+            </div>
+            
+            <!-- Levan Saginashvili -->
+            <div class="legend-card">
+                <div class="badge">GEORGIA</div>
+                <img src="levan.jpg" alt="Levan Saginashvili" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">LEVAN SAGINASHVILI</h3>
+                    <div class="legend-title">THE GEORGIAN HULK</div>
+                    <p class="legend-desc">Georgian powerhouse considered the strongest arm wrestler in the world. Known for his incredible size, strength, and dominant top-roll technique.</p>
+                </div>
+            </div>
+            
+            <!-- Denis Cyplenkov -->
+            <div class="legend-card">
+                <div class="badge">RUSSIA</div>
+                <img src="denis.jpg" alt="Denis Cyplenkov" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">DENIS CYPLENKOV</h3>
+                    <div class="legend-title">THE RUSSIAN HULK</div>
+                    <p class="legend-desc">Russian arm wrestling icon with legendary hand and wrist strength. Known for his massive hands and incredible hook technique that crushes opponents.</p>
+                </div>
+            </div>
+            
+            <!-- John Brzenk -->
+            <div class="legend-card">
+                <div class="badge">USA</div>
+                <img src="john.jpg" alt="John Brzenk" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">JOHN BRZENK</h3>
+                    <div class="legend-title">THE GOAT</div>
+                    <p class="legend-desc">American arm wrestling legend known as the G.O.A.T. "Greatest of All Time". Dominated the sport for decades with his technical mastery and versatility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="about-section">
+            <h2 class="about-title">ABOUT LEGEND EDITOR</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to the official channel of <span class="highlight">Legend Editor</span>, your premier destination for the most intense and thrilling arm wrestling content on YouTube.</p>
+                    
+                    <p>At LEGENDEDITORYT64, we bring you:</p>
+                    
+                    <p> <span class="highlight">Epic Matches</span> - Witness the world's strongest arm wrestlers battle for supremacy</p>
+                    <p> <span class="highlight">Training Secrets</span> - Learn techniques from legends like Devon Larratt and Levan Saginashvili</p>
+                    <p> <span class="highlight">Championship Coverage</span> - Exclusive access to top arm wrestling tournaments worldwide</p>
+                    <p> <span class="highlight">Legendary Edits</span> - Professionally edited highlights showcasing the sport's most dramatic moments</p>
+                    
+                    <p>Our channel celebrates the strength, technique, and passion that define professional arm wrestling. From the technical mastery of John Brzenk to the raw power of Denis Cyplenkov, we cover it all.</p>
+                    
+                    <p>Join our growing community of arm wrestling enthusiasts and experience the thrill of the table!</p>
+                    
+                    <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="cta-button" target="_blank">
+                        <i class="fab fa-youtube"></i> JOIN THE LEGEND ARMY
+                    </a>
+                </div>
+                <div class="about-image">
+                    <img src="arm.jpg" alt="Arm Wrestling Action">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">LEGENDEDITORYT64</div>
+        
+        <div class="social-icons">
+            <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="social-icon" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/gautam.64_/" class="social-icon" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://t.me/legendcreator64" class="social-icon" target="_blank">
+                <i class="fab fa-telegram"></i>
+            </a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 LEGENDEDITORYT64 | The Ultimate Arm Wrestling Channel | Created by Legend Editor
+        </div>
+    </footer>
+
+    <script>
+        // Floating animation for cards on hover
+        const cards = document.querySelectorAll('.legend-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleY = (x - centerX) / 25;
+                const angleX = (centerY - y) / 25;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-15px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-15px)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 300);
+            });
+        });
+        
+        // Simple animation for stats
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = +stY.innerText.replace(/+//0-D/g, '');
+            let count = 0;
+            const increment = target / 50;
+            
+            const updateCount = () => {
+                if (count < target) {
+                    count = increment;
+                    stat.innerText = Math.ceil(count)  (stat.innerText.includes('') ? '' : '');
+                    requestAnimationFrame(updateCount);
+                } else {
+                    stat.innerText = target  (stat.innerText.includes('') ? '' : '');
+                }
+            };
+            
+            setTimeout(updateCount, 1000);
+        });
+    </script>
+</body>
+</html>
